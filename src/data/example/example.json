@@ -1,0 +1,35 @@
+{
+  "version": "0.0.1",
+  "title": "Title for whole export",
+  "categories": [
+    "Category name 1",
+    "Category name 2",
+    "Category name 3"
+  ],
+  "tags": [
+    "Tag 01",
+    "Tag 02",
+    "Tag 03",
+    "Tag 04",
+    "Tag 05",
+    "Tag 06"
+  ],
+  "texts": [
+    {
+      "id": 42,
+      "text": "This is one text",
+      "tags": [],
+      "category": ""
+    },
+    {
+      "id": 43,
+      "text": "This is another text",
+      "tags": ["Tag 05", "Tag 02"],
+      "category": ""
+    }
+  ],
+  "ordering": {
+    "TBD-later": [],
+    "idea": "use mongoDB?"
+  }
+}
