@@ -1,34 +1,52 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import ShortWritingManager from './ShortWritingManager/ShortWritingManager';
 import testJson from './data/0001.json';
 
 function App() {
-  const swm = new ShortWritingManager();
-  swm.readDataFromJSON(testJson);
+  const [allCurrentTextsVisible, setallCurrentTextsVisible] = useState(false);
+  const [fullJsonVisible, setFullJsonVisible] = useState(false);
+  const swm = useRef(new ShortWritingManager())
+  swm.current.readDataFromJSON(testJson);
 
-  function showFullJson() {
+  function toggleFullJson() {
     const elementToPutJson = document.getElementById('short-texts-json');
     if (elementToPutJson) {
-      elementToPutJson.innerHTML = swm.getJsonFromCurrentData();
+      if (fullJsonVisible) {
+        elementToPutJson.innerHTML = '';
+      } else {
+        elementToPutJson.innerHTML = swm.current.getJsonFromCurrentData();
+      }
     }
+    setFullJsonVisible(!fullJsonVisible);
   }
 
-  function renderButtonToShowFullJson() {
+  function renderButtonToToggleFullJson() {
     return (
-      <button onClick={showFullJson}>Show full JSON</button>
+      <button onClick={toggleFullJson}>Toggle full JSON</button>
     )
   }
 
-  function showCurrentTextList() {
+  function toggleCurrentTextList() {
     const elementToPutTexts = document.getElementById('short-texts-pre');
     if (elementToPutTexts) {
-      elementToPutTexts.innerHTML = swm.getShortTextListAsPlainText()
+      if (allCurrentTextsVisible) {
+        elementToPutTexts.innerHTML = '';
+      } else {
+        elementToPutTexts.innerHTML = swm.current.getShortTextListAsPlainText();
+      }
     }
+    setallCurrentTextsVisible(!allCurrentTextsVisible);
   }
 
-  function renderButtonToShowCurrentTextList() {
+  function renderButtonToToggleCurrentTextList() {
     return (
-      <button onClick={showCurrentTextList}>Show current text list</button>
+      <button onClick={toggleCurrentTextList}>Toggle current text list</button>
+    )
+  }
+
+  function renderButtonToBumpVersion() {
+    return(
+      <button onClick={swm.current.bumpVersion.bind(swm.current)}>Bump version</button>
     )
   }
 
@@ -36,8 +54,9 @@ function App() {
     <div>
       <h1>Testing stuff</h1>
       <p>
-        {renderButtonToShowCurrentTextList()}
-        {renderButtonToShowFullJson()}
+        {renderButtonToToggleCurrentTextList()}
+        {renderButtonToToggleFullJson()}
+        {renderButtonToBumpVersion()}
       </p>
       <pre id='short-texts-pre'></pre>
       <pre id='short-texts-json'></pre>
