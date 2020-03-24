@@ -1,31 +1,7 @@
-interface ShortText {
-  text: string;
-  id?: number;
-  tags: string[];
-  category: string;
-};
-
-interface Chapter {
-  name: string;
-  shortTextsInOrder: ShortText[];
-};
-
-interface OrderedShortTextCollection {
-  name: string;
-  chaptersInOrder: Chapter[];
-};
-
-interface ShortTextJSON {
-  version: string;
-  title: string;
-  categories: string[];
-  tags: string[];
-  texts: ShortText[];
-  ordering?: { "TBD-later": string[] }
-};
+import { ShortText, ShortTextJSON } from './interfaces';
 
 class ShortWritingManager {
-  private jsonVersion: number;
+  private jsonVersion: number; // TODO: upgrade version from number to version text (like 0.2.13)
   private jsonTitle: string;
   private allShortTexts: ShortText[];
   private categories: string[];
@@ -72,6 +48,10 @@ class ShortWritingManager {
       texts: this.allShortTexts,
     };
     return JSON.stringify(fullObject, null, 2);
+  }
+
+  public bumpVersion() {
+    this.jsonVersion += 1;
   }
 }
 
