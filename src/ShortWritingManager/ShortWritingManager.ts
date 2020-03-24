@@ -31,8 +31,6 @@ class ShortWritingManager {
   private categories: string[];
   private tags: string[];
 
-  constructor() { }
-
   private getNextTextId() {
     const allCurrentid = this.allShortTexts.map(shortText => Number(shortText.id));
     const currentMaxId = Math.max(...allCurrentid);
@@ -56,8 +54,9 @@ class ShortWritingManager {
   }
 
   public getShortTextListAsPlainText(): string {
-    let allTextsInPlainText = `All texts (SUM: ${this.allShortTexts.length}):`;
     const delimiter = "\n- - -\n";
+    let allTextsInPlainText = `All texts (SUM: ${this.allShortTexts.length}):`;
+    allTextsInPlainText += delimiter;
     this.allShortTexts.forEach((shortText, index) => {
       allTextsInPlainText += shortText.text + delimiter;
     });
