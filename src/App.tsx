@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ShortWritingManager from './ShortWritingManager/ShortWritingManager';
-import testJson from './data/0001.json';
+import testJson from './data/0002.json';
 
 function App() {
   const [allCurrentTextsVisible, setallCurrentTextsVisible] = useState(false);

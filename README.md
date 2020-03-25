@@ -26,7 +26,7 @@ I realized that a program like this can categorize any short texts:
 
 This is why I chose to create this in a public repository.
 
-Later I plan to include quote json example(s?) as well.
+You can see json with quotes among the example json files.
 
 ## Current goals
 
@@ -44,5 +44,4 @@ See App.tsx
 ## Wishlist / ToDo list
 
 - upgrade: button that copies json to clipboard on click
-- add quote example json with at least 6 famous quotes
 - change json version variable from number to version string
