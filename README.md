@@ -3,7 +3,7 @@ Short Writing Sorter (SWS) is a place to write, categorize, and sort short texts
 
 ## What is the goal of this thing?
 
-I am a writer and, among other things, I write six-word-stories (in Hungarian, as [Béla, a gondolatébresztő](https://www.facebook.com/bela.a.gondolatebreszto/)).
+I am a writer and among other things I write six-word-stories (in Hungarian, as [Béla, a gondolatébresztő](https://www.facebook.com/bela.a.gondolatebreszto/)).
 
 I found hard to categorize hundreds of such short stories. There are questons like:
 - Have I already written similar or exactly this?
