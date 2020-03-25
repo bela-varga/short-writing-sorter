@@ -7,7 +7,7 @@ function App() {
   const [fullJsonVisible, setFullJsonVisible] = useState(false);
   const swm = useRef(new ShortWritingManager())
 
-  useEffect(()=>{
+  useEffect(() => {
     swm.current.readDataFromJSON(testJson);
   }, []);
 
@@ -55,20 +55,28 @@ function App() {
 
   function addNewText() {
     const newTextInput = document.getElementById('new-text') as HTMLInputElement;
+    const newTextCategoryInput = document.getElementById('new-text--category') as HTMLInputElement;
+    const newTextTagsInput = document.getElementById('new-text--tags') as HTMLInputElement;
     const newText = newTextInput.value;
+    const newCategory = newTextCategoryInput.value;
+    const newTextTags: string[] = newTextTagsInput.value.split(',').map(value => value.trim());
     const newShortText = {
       text: newText,
-      tags: [],
-      category: '',
+      tags: newTextTags,
+      category: newCategory,
     };
     swm.current.addText(newShortText);
     newTextInput.value = '';
+    newTextCategoryInput.value = '';
+    newTextTagsInput.value = '';
   }
 
   function renderBoxToAddText() {
     return (
       <div id='add-text'>
-        <input type='text' id='new-text'></input>
+        <input type='text' id='new-text' placeholder='Short text'></input>
+        <input type='text' id='new-text--category' placeholder='Category'></input>
+        <input type='text' id='new-text--tags' placeholder='Tags (comma separated)'></input>
         <button onClick={addNewText}>Add text</button>
       </div>
     )
