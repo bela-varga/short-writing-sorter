@@ -24,16 +24,18 @@ I realized that a program like this can categorize any short texts:
 - short ideas
 - six-word-stories
 
-This is why thought to create this in a public repository.
+This is why I chose to create this in a public repository.
 
 Later I plan to include quote json example(s?) as well.
 
 ## Current goals
 
-Now I am in the starting phase of this project. That means 'quick and dirty'.
+Now I am in the starting phase of this project. That means _'quick and dirty'_.
 
 At the moment I do not care about tests, super clean code, optimal solutions, etc.
-Now I am basically building up a Proof of Concept. I would like to reach a point where I can actually use it to save my already exising six-word-stories and be able to add new ones and save that (even if I can do it only by manual copy-pasting into and from a textarea).
+Now I am basically building up a Proof of Concept.
+
+I would like to reach a point where I can actually use this to save my already exising six-word-stories and be able to add new ones (even if I have to do the import/export manually in the start - copy-pasting into and from a textarea).
 
 ## Usage
 
