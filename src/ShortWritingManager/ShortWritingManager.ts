@@ -7,14 +7,6 @@ class ShortWritingManager {
   private categories: string[];
   private tags: string[];
 
-  constructor() {
-    this.getNextTextId = this.getNextTextId.bind(this);
-    this.readDataFromJSON = this.readDataFromJSON.bind(this);
-    this.addText = this.addText.bind(this);
-    this.getShortTextListAsPlainText = this.getShortTextListAsPlainText.bind(this);
-    this.getJsonFromCurrentData = this.getJsonFromCurrentData.bind(this);
-  }
-
   private getNextTextId() {
     const allCurrentid = this.allShortTexts.map(shortText => Number(shortText.id));
     const currentMaxId = Math.max(...allCurrentid);
