@@ -60,7 +60,6 @@ class ShortWritingManager {
 
   public bumpVersion() {
     this.jsonVersion += 1;
-    console.log(`jsonVersion`, this.jsonVersion);
   }
 }
 

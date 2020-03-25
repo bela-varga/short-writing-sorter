@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import ShortWritingManager from './ShortWritingManager/ShortWritingManager';
 import testJson from './data/0001.json';
 
@@ -6,7 +6,10 @@ function App() {
   const [allCurrentTextsVisible, setallCurrentTextsVisible] = useState(false);
   const [fullJsonVisible, setFullJsonVisible] = useState(false);
   const swm = useRef(new ShortWritingManager())
-  swm.current.readDataFromJSON(testJson);
+
+  useEffect(()=>{
+    swm.current.readDataFromJSON(testJson);
+  }, []);
 
   function toggleFullJson() {
     const elementToPutJson = document.getElementById('short-texts-json');
@@ -45,19 +48,41 @@ function App() {
   }
 
   function renderButtonToBumpVersion() {
-    return(
+    return (
       <button onClick={swm.current.bumpVersion.bind(swm.current)}>Bump version</button>
+    )
+  }
+
+  function addNewText() {
+    const newTextInput = document.getElementById('new-text') as HTMLInputElement;
+    const newText = newTextInput.value;
+    const newShortText = {
+      text: newText,
+      tags: [],
+      category: '',
+    };
+    swm.current.addText(newShortText);
+    newTextInput.value = '';
+  }
+
+  function renderBoxToAddText() {
+    return (
+      <div id='add-text'>
+        <input type='text' id='new-text'></input>
+        <button onClick={addNewText}>Add text</button>
+      </div>
     )
   }
 
   return (
     <div>
       <h1>Testing stuff</h1>
-      <p>
+      <div>
+        {renderBoxToAddText()}
         {renderButtonToToggleCurrentTextList()}
         {renderButtonToToggleFullJson()}
         {renderButtonToBumpVersion()}
-      </p>
+      </div>
       <pre id='short-texts-pre'></pre>
       <pre id='short-texts-json'></pre>
     </div>
