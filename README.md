@@ -1,50 +1,47 @@
 # short-writing-sorter
 Short Writing Sorter (SWS) is a place to write, categorize, and sort short texts.
 
+## What is the goal of this thing?
 
----
+I am a writer and, among other things, I write six-word-stories (in Hungarian, as [Béla, a gondolatébresztő](https://www.facebook.com/bela.a.gondolatebreszto/)).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+I found hard to categorize hundreds of such short stories. There are questons like:
+- Have I already written similar or exactly this?
+- I would like to search for a positive/humorous one, how to find it?
+- Have I already posted this one on my facebook page?
+- In the upcuming book, where should this go?
+- In the upcoming book, what order and how should these be?
 
-## Available Scripts
+I googled a little if there is a tool to do this. Maybe there is, but none of them was good enough for me. As I am a software engineer, I thought I write an own program to handle my very short writings.
 
-In the project directory, you can run:
+So the main goal of this project is to be able to categorize my six-word-stories, sort them, label them, and create nice exports in the long run (for example a book in md format).
 
-### `npm start`
+## Other use-cases
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+I realized that a program like this can categorize any short texts:
+- quotes
+- short funny gold quotes from family/colleagues
+- short ideas
+- six-word-stories
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+This is why thought to create this in a public repository.
 
-### `npm test`
+Later I plan to include quote json example(s?) as well.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Current goals
 
-### `npm run build`
+Now I am in the starting phase of this project. That means 'quick and dirty'.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+At the moment I do not care about tests, super clean code, optimal solutions, etc.
+Now I am basically building up a Proof of Concept. I would like to reach a point where I can actually use it to save my already exising six-word-stories and be able to add new ones and save that (even if I can do it only by manual copy-pasting into and from a textarea).
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Usage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+See App.tsx
 
-### `npm run eject`
+## Wishlist / ToDo list
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- update adding text part to be able to add tags and category as well
+- add possibility to import a JSON via a textarea
+- add quote example json with at least 6 famous quotes
+- change json version variable from number to version string
