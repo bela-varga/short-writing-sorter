@@ -82,6 +82,22 @@ function App() {
     )
   }
 
+  function importDataFromTextarea() {
+    const textareaInput = document.getElementById('import-from-string') as HTMLTextAreaElement;
+    try {
+      const newJson = JSON.parse(textareaInput.value);
+      swm.current.readDataFromJSON(newJson);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  function renderButtonToImportFromTextarea() {
+    return (
+      <button onClick={importDataFromTextarea}>Import data from textarea</button>
+    );
+  }
+
   return (
     <div>
       <h1>Testing stuff</h1>
@@ -90,9 +106,11 @@ function App() {
         {renderButtonToToggleCurrentTextList()}
         {renderButtonToToggleFullJson()}
         {renderButtonToBumpVersion()}
+        {renderButtonToImportFromTextarea()}
       </div>
       <pre id='short-texts-pre'></pre>
-      <pre id='short-texts-json'></pre>
+      <textarea disabled id='short-texts-json'></textarea>
+      <textarea id='import-from-string'></textarea>
     </div>
   );
 }

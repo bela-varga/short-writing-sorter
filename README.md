@@ -43,8 +43,6 @@ See App.tsx
 
 ## Wishlist / ToDo list
 
-- add possibility to show a textarea with json to be able to copy the json
---- upgrade: button that copies json to clipboard on click
-- add possibility to import a JSON via a textarea
+- upgrade: button that copies json to clipboard on click
 - add quote example json with at least 6 famous quotes
 - change json version variable from number to version string
