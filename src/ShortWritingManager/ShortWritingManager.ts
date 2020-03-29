@@ -53,6 +53,52 @@ class ShortWritingManager {
   public bumpVersion() {
     this.jsonVersion += 1;
   }
+
+  private mapShortTexts(shortTextArray: ShortText[]): Map<string, number[]> {
+    const mapOfTexts = new Map<string, number[]>();
+    this.allShortTexts.forEach((shortText) => {
+      const text = shortText.text.trim();
+      const id = Number(shortText.id);
+      if (mapOfTexts.has(text)) {
+        const idArrayForThisText = mapOfTexts.get(text);
+        idArrayForThisText?.push(id);
+      } else {
+        mapOfTexts.set(text, [id]);
+      }
+    });
+    return mapOfTexts;
+  }
+
+  public showDuplicateTexts() {
+    const mapOfCurrentTexts = this.mapShortTexts(this.allShortTexts);
+    let hasDuplicate = false;
+    mapOfCurrentTexts.forEach((idsOfTexts, text) => {
+      if (idsOfTexts.length > 1) {
+        hasDuplicate = true;
+        console.log(`Duplicate text: '${text}' - ids: ${idsOfTexts.join(',')}`);
+      }
+    });
+    if (!hasDuplicate) {
+      console.log(`There was no duplicate texts amongst the ${mapOfCurrentTexts.size} texts.`)
+    }
+  }
+
+  public getAllTags(): string[] {
+    return this.tags;
+  }
+
+  public getAllUsedTags(): string[] {
+    const usedTagsSet = new Set<string>();
+    this.allShortTexts?.forEach((shortText) => {
+      shortText.tags.forEach(tag => usedTagsSet.add(tag));
+    });
+    return Array.from(usedTagsSet);
+  }
+
+  public getUnusedTags(): string[] {
+    const allUsedTags = this.getAllUsedTags();
+    return this.tags?.filter(tag => !allUsedTags.includes(tag));
+  }
 }
 
 export default ShortWritingManager;

@@ -14,9 +14,7 @@
     "opportunity",
     "positivism",
     "failure",
-    "ideas",
-    "not used",
-    "test"
+    "ideas"
   ],
   "texts": [
     {
@@ -71,6 +69,15 @@
       "text": "To have a great idea, have a lot of them.",
       "tags": [
         "think",
+        "ideas"
+      ],
+      "category": "Thomas A. Edison"
+    },
+    {
+      "id": 7,
+      "text": "To have a great idea, have a lot of them.",
+      "tags": [
+        "duplicated",
         "ideas"
       ],
       "category": "Thomas A. Edison"

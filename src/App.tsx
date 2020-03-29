@@ -1,15 +1,26 @@
 import React, { useState, useRef, useEffect } from 'react';
+import Tags from './Tags/Tags';
+
 import ShortWritingManager from './ShortWritingManager/ShortWritingManager';
 import testJson from './data/0002.json';
 
 function App() {
   const [allCurrentTextsVisible, setallCurrentTextsVisible] = useState(false);
+  const [tags, setTags] = useState<string[]>([]);
+  const [usedTags, setUsedTags] = useState<string[]>([]);
+  const [unusedTags, setUnusedTags] = useState<string[]>([]);
   const [fullJsonVisible, setFullJsonVisible] = useState(false);
   const swm = useRef(new ShortWritingManager())
 
   useEffect(() => {
     swm.current.readDataFromJSON(testJson);
   }, []);
+
+  useEffect(()=>{
+    setTags(swm.current.getAllTags());
+    setUsedTags(swm.current.getAllUsedTags());
+    setUnusedTags(swm.current.getUnusedTags());
+  }, [swm.current]);
 
   function toggleFullJson() {
     const elementToPutJson = document.getElementById('short-texts-json');
@@ -98,15 +109,31 @@ function App() {
     );
   }
 
+  function showDuplicateTexts() {
+    swm.current.showDuplicateTexts();
+  }
+
+  function renderButtonToShowDuplicateTexts() {
+    return (
+      <button onClick={showDuplicateTexts}>Show duplicate texts</button>
+    )
+  }
+
   return (
     <div>
       <h1>Testing stuff</h1>
+      <Tags
+        allTags={tags}
+        usedTags={usedTags}
+        unusedTags={unusedTags}
+      ></Tags>
       <div>
         {renderBoxToAddText()}
         {renderButtonToToggleCurrentTextList()}
         {renderButtonToToggleFullJson()}
         {renderButtonToBumpVersion()}
         {renderButtonToImportFromTextarea()}
+        {renderButtonToShowDuplicateTexts()}
       </div>
       <pre id='short-texts-pre'></pre>
       <textarea disabled id='short-texts-json'></textarea>
