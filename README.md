@@ -43,13 +43,14 @@ See App.tsx
 
 ## Wishlist / ToDo list
 
+- create basic look for further development to be easier
+- some refactor?
 - add functionality to search all texts for a tag
 - add functionality to search all texts for a category
 - update functionality of duplicate items shown to not just log it on console
 - update searching by tags to search all texts for multiple tags
 - update searching by tags to be able to search all texts that does not have a tag
 - add functionality to show texts that are very similar (for example 5 words are the same from 6 words)
-- create basic look for the app
 - do some refactoring for App.tsx
 - do some refactoring for ShortWritingManager
 - upgrade: button that copies json to clipboard on click
