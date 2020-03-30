@@ -2,6 +2,14 @@ import React, { useState, useRef, useEffect } from 'react';
 import Tags from './Tags/Tags';
 
 import ShortWritingManager from './ShortWritingManager/ShortWritingManager';
+/**
+ * hatszavasok.json is the file containing my own six-word-stories.
+ * I do not want to publicly upload them to github, so that file is in gitignore.
+ * I use that file regularly at home but I would not like to make error in the repo with this.
+ * So I left this row in comment, this way I can switch easily.
+ * TODO: do this with .env file(s)
+ */
+// import testJson from './data/hatszavasok.json';
 import testJson from './data/0002.json';
 
 function App() {

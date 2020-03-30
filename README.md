@@ -51,6 +51,7 @@ See App.tsx
 - update searching by tags to search all texts for multiple tags
 - update searching by tags to be able to search all texts that does not have a tag
 - add functionality to show texts that are very similar (for example 5 words are the same from 6 words)
+- use .env file(s) instead of commented code for personal json file(s) to load
 - do some refactoring for App.tsx
 - do some refactoring for ShortWritingManager
 - upgrade: button that copies json to clipboard on click
