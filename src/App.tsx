@@ -51,24 +51,6 @@ function App() {
     )
   }
 
-  function toggleCurrentTextList() {
-    const elementToPutTexts = document.getElementById('short-texts-pre');
-    if (elementToPutTexts) {
-      if (allCurrentTextsVisible) {
-        elementToPutTexts.innerHTML = '';
-      } else {
-        elementToPutTexts.innerHTML = swm.current.getShortTextListAsPlainText();
-      }
-    }
-    setallCurrentTextsVisible(!allCurrentTextsVisible);
-  }
-
-  function renderButtonToToggleCurrentTextList() {
-    return (
-      <button onClick={toggleCurrentTextList}>Toggle current text list</button>
-    )
-  }
-
   function renderButtonToBumpVersion() {
     return (
       <button onClick={swm.current.bumpVersion.bind(swm.current)}>Bump version</button>
@@ -153,12 +135,16 @@ function App() {
       </Accordion>
 
       <Accordion title='Show, export, import'>
-        {renderButtonToToggleCurrentTextList()}
         {renderButtonToToggleFullJson()}
         {renderButtonToImportFromTextarea()}
-        <pre id='short-texts-pre'></pre>
         <textarea disabled id='short-texts-json'></textarea>
         <textarea id='import-from-string'></textarea>
+      </Accordion>
+
+      <Accordion title='Show all current texts'>
+        <pre>
+          {swm.current && swm.current.getShortTextListAsPlainText()}
+        </pre>
       </Accordion>
     </div>
   );

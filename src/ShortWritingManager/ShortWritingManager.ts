@@ -2,10 +2,10 @@ import { ShortText, ShortTextJSON } from './interfaces';
 
 class ShortWritingManager {
   private jsonVersion: number; // TODO: upgrade version from number to version text (like 0.2.13)
-  private jsonTitle: string;
-  private allShortTexts: ShortText[];
-  private categories: string[];
-  private tags: string[];
+  private jsonTitle: string = '';
+  private allShortTexts: ShortText[] = [];
+  private categories: string[] = [];
+  private tags: string[] = [];
 
   private getNextTextId() {
     const allCurrentid = this.allShortTexts.map(shortText => Number(shortText.id));
