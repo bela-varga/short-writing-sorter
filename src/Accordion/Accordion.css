@@ -1,0 +1,22 @@
+.accordion {
+  display: block;
+}
+
+.accordion > h3 {
+  font-weight: 500;
+  display: block;
+  border-top: 3px solid #2f7a6f;
+  cursor: pointer;
+  background: #4abdac;
+  color: #fafafa;
+  padding: 0.5em 0.3em;
+}
+
+.accordion.open > h3 {
+  background: #f7b733;
+  border-color: #fc4a1a;
+}
+
+.accordion-content {
+  padding: 0.5em;
+}
