@@ -44,6 +44,7 @@ See App.tsx
 ## Wishlist / ToDo list
 
 - create basic look for further development to be easier
+- add possiblity to add multiple texts at the same time
 - some refactor?
 - add functionality to search all texts for a tag
 - add functionality to search all texts for a category
