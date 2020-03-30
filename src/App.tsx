@@ -14,7 +14,6 @@ import testJson from './data/0002.json';
 import Accordion from './Accordion/Accordion';
 
 function App() {
-  const [allCurrentTextsVisible, setallCurrentTextsVisible] = useState(false);
   const [tags, setTags] = useState<string[]>([]);
   const [usedTags, setUsedTags] = useState<string[]>([]);
   const [unusedTags, setUnusedTags] = useState<string[]>([]);
