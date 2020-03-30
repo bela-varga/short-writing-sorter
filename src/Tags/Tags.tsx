@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import './Tags.css';
+
 interface TagsInterface {
   allTags: string[];
   usedTags: string[];
@@ -18,19 +20,25 @@ const Tags: React.FunctionComponent<TagsInterface> = (props) => {
       </h4>
       {
         showAll &&
-        <div>
-          <h5>All tags</h5>
-          <ul>
-            {!!allTags?.length && allTags.map(tag => <li>{tag}</li>)}
-          </ul>
-          <h5>Used tags</h5>
-          <ul>
-            {!!usedTags?.length && usedTags.map(tag => <li>{tag}</li>)}
-          </ul>
-          <h5>Not used tags</h5>
-          <ul>
-            {!!unusedTags?.length && unusedTags.map(tag => <li>{tag}</li>)}
-          </ul>
+        <div className="flex">
+          <div className="all-tags">
+            <h5>All tags</h5>
+            <ul>
+              {!!allTags?.length && allTags.map((tag, index) => <li key={index}>{tag}</li>)}
+            </ul>
+          </div>
+          <div className="used-tags">
+            <h5>Used tags</h5>
+            <ul>
+              {!!usedTags?.length && usedTags.map((tag, index) => <li key={index}>{tag}</li>)}
+            </ul>
+          </div>
+          <div className="unused-tags">
+            <h5>Not used tags</h5>
+            <ul>
+              {!!unusedTags?.length && unusedTags.map((tag, index) => <li key={index}>{tag}</li>)}
+            </ul>
+          </div>
         </div>
       }
     </div>
