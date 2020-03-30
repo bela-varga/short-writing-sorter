@@ -43,7 +43,7 @@ See App.tsx
 
 ## Wishlist / ToDo list
 
-- create basic look for further development to be easier
+- update look to be better, separate functionalities more
 - add possiblity to add multiple texts at the same time
 - some refactor?
 - add functionality to search all texts for a tag
@@ -58,3 +58,4 @@ See App.tsx
 - upgrade: button that copies json to clipboard on click
 - change json version variable from number to version string
 - maybe: try this with Svelte
+- idea: variants for short texts: have multiple similar short texts under the same id, and always have a current winner that can be changed. That version is displayed for that short text.

@@ -11,6 +11,7 @@ import ShortWritingManager from './ShortWritingManager/ShortWritingManager';
  */
 // import testJson from './data/hatszavasok.json';
 import testJson from './data/0002.json';
+import Accordion from './Accordion/Accordion';
 
 function App() {
   const [allCurrentTextsVisible, setallCurrentTextsVisible] = useState(false);
@@ -26,7 +27,7 @@ function App() {
     setlastChangeTime(Date.now());
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     setTags(swm.current.getAllTags());
     setUsedTags(swm.current.getAllUsedTags());
     setUnusedTags(swm.current.getUnusedTags());
@@ -133,23 +134,32 @@ function App() {
 
   return (
     <div>
-      <h1>Testing stuff</h1>
-      <Tags
-        allTags={tags}
-        usedTags={usedTags}
-        unusedTags={unusedTags}
-      ></Tags>
-      <div>
+      <h1>Short Writing Manager</h1>
+      <Accordion title='Add short text'>
         {renderBoxToAddText()}
+      </Accordion>
+
+      <Accordion title='Tags'>
+        <Tags
+          allTags={tags}
+          usedTags={usedTags}
+          unusedTags={unusedTags}
+        ></Tags>
+      </Accordion>
+
+      <Accordion title='Random things'>
+        {renderButtonToBumpVersion()}
+        {renderButtonToShowDuplicateTexts()}
+      </Accordion>
+
+      <Accordion title='Show, export, import'>
         {renderButtonToToggleCurrentTextList()}
         {renderButtonToToggleFullJson()}
-        {renderButtonToBumpVersion()}
         {renderButtonToImportFromTextarea()}
-        {renderButtonToShowDuplicateTexts()}
-      </div>
-      <pre id='short-texts-pre'></pre>
-      <textarea disabled id='short-texts-json'></textarea>
-      <textarea id='import-from-string'></textarea>
+        <pre id='short-texts-pre'></pre>
+        <textarea disabled id='short-texts-json'></textarea>
+        <textarea id='import-from-string'></textarea>
+      </Accordion>
     </div>
   );
 }
