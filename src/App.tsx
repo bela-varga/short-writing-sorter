@@ -11,16 +11,18 @@ function App() {
   const [unusedTags, setUnusedTags] = useState<string[]>([]);
   const [fullJsonVisible, setFullJsonVisible] = useState(false);
   const swm = useRef(new ShortWritingManager())
+  const [lastChangeTime, setlastChangeTime] = useState(Date.now());
 
   useEffect(() => {
     swm.current.readDataFromJSON(testJson);
+    setlastChangeTime(Date.now());
   }, []);
 
   useEffect(()=>{
     setTags(swm.current.getAllTags());
     setUsedTags(swm.current.getAllUsedTags());
     setUnusedTags(swm.current.getUnusedTags());
-  }, [swm.current]);
+  }, [lastChangeTime]);
 
   function toggleFullJson() {
     const elementToPutJson = document.getElementById('short-texts-json');
@@ -80,6 +82,7 @@ function App() {
     newTextInput.value = '';
     newTextCategoryInput.value = '';
     newTextTagsInput.value = '';
+    setlastChangeTime(Date.now());
   }
 
   function renderBoxToAddText() {
@@ -101,6 +104,7 @@ function App() {
     } catch (error) {
       console.error(error);
     }
+    setlastChangeTime(Date.now());
   }
 
   function renderButtonToImportFromTextarea() {
