@@ -1,3 +1,4 @@
+/*
 .flex {
   display: flex;
 }
@@ -5,4 +6,26 @@
 .flex > div {
   margin: 1em;
   padding: 0;
+}
+/* */
+.tags h4 {
+  font-size: 1.2em;
+  font-weight: 500;
+  padding-bottom: 0.2em;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 0.5em;
+}
+
+ul.tag-list {
+  margin: 0.5em 0.5em 1em;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.3em 0.6em;
+  margin: 0.4em;
+  border: 1px solid var(--main-theme-color-dark, #2f7a6f);
+  border-radius: 6px;
+  background: var(--main-theme-color-light, #4abdac);
+  color: var(--main-text-color-light, #fafafa);
 }
