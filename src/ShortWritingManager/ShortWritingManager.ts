@@ -32,7 +32,6 @@ class ShortWritingManager {
   }
 
   public addTag(tagName: string) {
-    console.log(`new tag: ${tagName}`)
     tagName = tagName.trim();
     if (!this.tags.includes(tagName)) {
       this.tags.push(tagName);
