@@ -43,19 +43,16 @@ See App.tsx
 
 ## Wishlist / ToDo list
 
-- update import/export part to look better and not toggle from button but from the normal toggle
-- update look to be better, separate functionalities more
+- update functionality of duplicate items shown to not just log it on console
 - some refactor?
 - add functionality to search all texts for a tag
 - add functionality to search all texts for a category
-- update functionality of duplicate items shown to not just log it on console
 - update searching by tags to search all texts for multiple tags
 - update searching by tags to be able to search all texts that does not have a tag
 - add functionality to show texts that are very similar (for example 5 words are the same from 6 words)
 - use .env file(s) instead of commented code for personal json file(s) to load
 - do some refactoring for App.tsx
 - do some refactoring for ShortWritingManager
-- upgrade: button that copies json to clipboard on click
 - change json version variable from number to version string
 - optimize code to have less unneeded rendering
 - maybe: try this with Svelte
