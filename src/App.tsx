@@ -19,7 +19,6 @@ function App() {
   const [tags, setTags] = useState<string[]>([]);
   const [usedTags, setUsedTags] = useState<string[]>([]);
   const [unusedTags, setUnusedTags] = useState<string[]>([]);
-  const [fullJsonVisible, setFullJsonVisible] = useState(false);
   const swm = useRef(new ShortWritingManager())
   const [lastChangeTime, setlastChangeTime] = useState(Date.now());
 
@@ -34,21 +33,28 @@ function App() {
     setUnusedTags(swm.current.getUnusedTags());
   }, [lastChangeTime]);
 
-  function toggleFullJson() {
-    const elementToPutJson = document.getElementById('short-texts-json');
-    if (elementToPutJson) {
-      if (fullJsonVisible) {
-        elementToPutJson.innerHTML = '';
-      } else {
-        elementToPutJson.innerHTML = swm.current.getJsonFromCurrentData();
-      }
-    }
-    setFullJsonVisible(!fullJsonVisible);
+  function copyJsonToClipboard() {
+    const shortTextJsonInput = document.getElementById('short-texts-json') as HTMLTextAreaElement;
+    shortTextJsonInput.disabled = false;
+    shortTextJsonInput.focus();
+    shortTextJsonInput.select();
+    document.execCommand('copy');
+    shortTextJsonInput.disabled = true;
   }
 
-  function renderButtonToToggleFullJson() {
+  function renderBoxToShowJsonExport() {
     return (
-      <button onClick={toggleFullJson}>Toggle full JSON</button>
+      <div>
+        <textarea
+          disabled
+          rows={8}
+          cols={50}
+          id='short-texts-json'
+          value={swm.current.getJsonFromCurrentData()}
+        ></textarea>
+        <br />
+        <button onClick={copyJsonToClipboard}>Select this JSON and copy it to clipboard</button>
+      </div>
     )
   }
 
@@ -123,18 +129,25 @@ function App() {
 
   function importDataFromTextarea() {
     const textareaInput = document.getElementById('import-from-string') as HTMLTextAreaElement;
-    try {
-      const newJson = JSON.parse(textareaInput.value);
-      swm.current.readDataFromJSON(newJson);
-    } catch (error) {
-      console.error(error);
+    const textareaInputTrimmedValue = textareaInput.value.trim();
+    if (textareaInputTrimmedValue) {
+      try {
+        const newJson = JSON.parse(textareaInput.value);
+        swm.current.readDataFromJSON(newJson);
+      } catch (error) {
+        console.error(error);
+      }
+      setlastChangeTime(Date.now());
     }
-    setlastChangeTime(Date.now());
   }
 
-  function renderButtonToImportFromTextarea() {
+  function renderBoxToImportFromTextarea() {
     return (
-      <button onClick={importDataFromTextarea}>Import data from textarea</button>
+      <div>
+        <textarea rows={8} cols={50} id='import-from-string'></textarea>
+        <br />
+        <button onClick={importDataFromTextarea}>Import data from textarea</button>
+      </div>
     );
   }
 
@@ -173,11 +186,10 @@ function App() {
         {renderButtonToShowDuplicateTexts()}
       </Accordion>
 
-      <Accordion title='Show, export, import'>
-        {renderButtonToToggleFullJson()}
-        {renderButtonToImportFromTextarea()}
-        <textarea disabled id='short-texts-json'></textarea>
-        <textarea id='import-from-string'></textarea>
+      <Accordion title='Import / Export'>
+        {renderBoxToImportFromTextarea()}
+        <hr/>
+        {renderBoxToShowJsonExport()}
       </Accordion>
 
       <Accordion title='Show all current texts'>
