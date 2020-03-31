@@ -44,6 +44,7 @@ See App.tsx
 ## Wishlist / ToDo list
 
 - some refactor?
+- add functionality to be able to edit existing ShortTexts
 - add functionality to search all texts for a tag
 - add functionality to search all texts for a category
 - update searching by tags to search all texts for multiple tags
