@@ -88,6 +88,16 @@ class ShortWritingManager {
     return mapOfTexts;
   }
 
+  public getDuplicateTexts() {
+    const mapOfTexts = this.mapShortTexts();
+    mapOfTexts.forEach((idsOfTexts, text) => {
+      if (idsOfTexts.length < 2) {
+        mapOfTexts.delete(text);
+      }
+    });
+    return mapOfTexts;
+  }
+
   public showDuplicateTexts() {
     const mapOfCurrentTexts = this.mapShortTexts();
     let hasDuplicate = false;

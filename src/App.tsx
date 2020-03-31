@@ -18,6 +18,7 @@ function App() {
   const [tags, setTags] = useState<string[]>([]);
   const [usedTags, setUsedTags] = useState<string[]>([]);
   const [unusedTags, setUnusedTags] = useState<string[]>([]);
+  const [showDulicateTexts, setShowDulicateTexts] = useState(false);
   const swm = useRef(new ShortWritingManager())
   const [lastChangeTime, setLastChangeTime] = useState(Date.now());
 
@@ -155,13 +156,34 @@ function App() {
     );
   }
 
-  function showDuplicateTexts() {
-    swm.current.showDuplicateTexts();
+  function renderDuplicateTexts() {
+    let textToShow = '';
+    const duplicateTextsMap = swm.current.getDuplicateTexts();
+    duplicateTextsMap.forEach((idsOfTexts, text) => {
+      textToShow += `'${text}' is the same at these IDs: ${idsOfTexts.join(',')}\n`;
+    });
+
+    if (!textToShow) {
+      textToShow = 'There is not any duplicate short text among the current ones.';
+    }
+
+    return(
+      <pre>
+        {textToShow}
+      </pre>
+    );
+  }
+
+  function toggleShowingDuplicateTexts() {
+    setShowDulicateTexts(!showDulicateTexts);
   }
 
   function renderButtonToShowDuplicateTexts() {
     return (
-      <button onClick={showDuplicateTexts}>Show duplicate texts</button>
+      <div>
+        <button onClick={toggleShowingDuplicateTexts}>Toggle showing duplicate texts</button>
+        {showDulicateTexts && renderDuplicateTexts()}
+      </div>
     )
   }
 
@@ -192,7 +214,7 @@ function App() {
 
       <Accordion title='Import / Export'>
         {renderBoxToImportFromTextarea()}
-        <hr/>
+        <hr />
         {renderBoxToShowJsonExport()}
       </Accordion>
 

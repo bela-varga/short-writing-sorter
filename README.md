@@ -43,7 +43,6 @@ See App.tsx
 
 ## Wishlist / ToDo list
 
-- update functionality of duplicate items shown to not just log it on console
 - some refactor?
 - add functionality to search all texts for a tag
 - add functionality to search all texts for a category
