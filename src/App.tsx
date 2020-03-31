@@ -60,21 +60,27 @@ function App() {
 
   function addNewText() {
     const newTextInput = document.getElementById('new-text') as HTMLInputElement;
-    const newTextCategoryInput = document.getElementById('new-text--category') as HTMLInputElement;
-    const newTextTagsInput = document.getElementById('new-text--tags') as HTMLInputElement;
-    const newText = newTextInput.value;
-    const newCategory = newTextCategoryInput.value;
-    const newTextTags: string[] = newTextTagsInput.value.split(',').map(value => value.trim());
-    const newShortText: ShortText = {
-      text: newText,
-      tags: newTextTags,
-      category: newCategory,
-    };
-    swm.current.addText(newShortText);
-    newTextInput.value = '';
-    newTextCategoryInput.value = '';
-    newTextTagsInput.value = '';
-    setlastChangeTime(Date.now());
+    const newText = newTextInput.value.trim();
+    if (newText) {
+      const newTextCategoryInput = document.getElementById('new-text--category') as HTMLInputElement;
+      const newTextTagsInput = document.getElementById('new-text--tags') as HTMLInputElement;
+      const newCategory = newTextCategoryInput.value.trim();
+      let newTextTags: string[] = [];
+      const newTextTagsTrimmedValue = newTextTagsInput.value.trim();
+      if (newTextTagsTrimmedValue) {
+        newTextTags = newTextTagsTrimmedValue.split(',').map(value => value.trim());
+      }
+      const newShortText: ShortText = {
+        text: newText,
+        tags: newTextTags,
+        category: newCategory,
+      };
+      swm.current.addText(newShortText);
+      newTextInput.value = '';
+      newTextCategoryInput.value = '';
+      newTextTagsInput.value = '';
+      setlastChangeTime(Date.now());
+    }
   }
 
   function renderBoxToAddText() {

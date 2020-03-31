@@ -26,14 +26,14 @@ class ShortWritingManager {
 
   public addCategory(categoryName: string) {
     categoryName = categoryName.trim();
-    if (!this.categories.includes(categoryName)) {
+    if (categoryName && !this.categories.includes(categoryName)) {
       this.categories.push(categoryName);
     }
   }
 
   public addTag(tagName: string) {
     tagName = tagName.trim();
-    if (!this.tags.includes(tagName)) {
+    if (tagName && !this.tags.includes(tagName)) {
       this.tags.push(tagName);
     }
   }
@@ -73,7 +73,7 @@ class ShortWritingManager {
     this.jsonVersion += 1;
   }
 
-  private mapShortTexts(shortTextArray: ShortText[]): Map<string, number[]> {
+  private mapShortTexts(): Map<string, number[]> {
     const mapOfTexts = new Map<string, number[]>();
     this.allShortTexts.forEach((shortText) => {
       const text = shortText.text.trim();
@@ -89,7 +89,7 @@ class ShortWritingManager {
   }
 
   public showDuplicateTexts() {
-    const mapOfCurrentTexts = this.mapShortTexts(this.allShortTexts);
+    const mapOfCurrentTexts = this.mapShortTexts();
     let hasDuplicate = false;
     mapOfCurrentTexts.forEach((idsOfTexts, text) => {
       if (idsOfTexts.length > 1) {
