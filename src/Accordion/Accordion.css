@@ -5,16 +5,16 @@
 .accordion > h3 {
   font-weight: 500;
   display: block;
-  border-top: 3px solid #2f7a6f;
+  border-top: 3px solid var(--main-theme-color-dark, #2f7a6f);
   cursor: pointer;
-  background: #4abdac;
-  color: #fafafa;
+  background: var(--main-theme-color-dark, #4abdac);
+  color: var(--almost-white, #fafafa);
   padding: 0.5em 0.3em;
 }
 
 .accordion.open > h3 {
-  background: #f7b733;
-  border-color: #fc4a1a;
+  background: var(--secondary-theme-color-light, #f7b733);
+  border-color: var(--secondary-theme-color-dark, #fc4a1a);
 }
 
 .accordion-content {
