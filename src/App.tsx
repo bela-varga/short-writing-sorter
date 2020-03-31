@@ -11,7 +11,9 @@ import ShortWritingManager from './ShortWritingManager/ShortWritingManager';
  */
 // import testJson from './data/hatszavasok.json';
 import testJson from './data/0002.json';
+
 import Accordion from './Accordion/Accordion';
+import { ShortText } from './ShortWritingManager/interfaces';
 
 function App() {
   const [tags, setTags] = useState<string[]>([]);
@@ -63,7 +65,7 @@ function App() {
     const newText = newTextInput.value;
     const newCategory = newTextCategoryInput.value;
     const newTextTags: string[] = newTextTagsInput.value.split(',').map(value => value.trim());
-    const newShortText = {
+    const newShortText: ShortText = {
       text: newText,
       tags: newTextTags,
       category: newCategory,
@@ -84,6 +86,33 @@ function App() {
         <button onClick={addNewText}>Add text</button>
       </div>
     )
+  }
+
+  function addMultipleNewTexts() {
+    const multipleNewTextsInput = document.getElementById('multiple-new-texts') as HTMLTextAreaElement;
+    const allNewTexts = multipleNewTextsInput.value.split('\n');
+    allNewTexts.forEach(newTextString => {
+      newTextString = newTextString.trim();
+      if (newTextString) {
+        const newShortText: ShortText = {
+          text: newTextString,
+          tags: [],
+          category: '',
+        }
+        swm.current.addText(newShortText);
+        setlastChangeTime(Date.now());
+      }
+    });
+  }
+
+  function renderBoxToAddMultipleTexts() {
+    return (
+      <div>
+        <textarea rows={8} cols={50} id='multiple-new-texts' placeholder='Each row will be a new short text'></textarea>
+        <br />
+        <button onClick={addMultipleNewTexts}>Add all texts</button>
+      </div>
+    );
   }
 
   function importDataFromTextarea() {
@@ -116,8 +145,13 @@ function App() {
   return (
     <div>
       <h1>Short Writing Manager</h1>
+
       <Accordion title='Add short text'>
         {renderBoxToAddText()}
+      </Accordion>
+
+      <Accordion title='Add multiple short texts'>
+        {renderBoxToAddMultipleTexts()}
       </Accordion>
 
       <Accordion title='Tags'>

@@ -41,6 +41,9 @@ class ShortWritingManager {
 
   public addText(shortText: ShortText) {
     shortText.id = this.getNextTextId();
+    if (!shortText.category) {
+      shortText.category = "uncategorized";
+    }
     this.allShortTexts.push(shortText);
     shortText.tags.forEach(tag => this.addTag(tag));
     this.addCategory(shortText.category);
