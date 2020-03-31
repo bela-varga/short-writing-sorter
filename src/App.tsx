@@ -12,7 +12,7 @@ import ShortWritingManager from './ShortWritingManager/ShortWritingManager';
  * TODO: do this with .env file(s)
  */
 // import testJson from './data/hatszavasok.json';
-import testJson from './data/0002.json';
+import testJson from './data/0003.json';
 
 function App() {
   const [tags, setTags] = useState<string[]>([]);
