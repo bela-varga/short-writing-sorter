@@ -43,6 +43,7 @@ See App.tsx
 
 ## Wishlist / ToDo list
 
+- update import/export part to look better and not toggle from button but from the normal toggle
 - update look to be better, separate functionalities more
 - some refactor?
 - add functionality to search all texts for a tag
