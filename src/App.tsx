@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Tags from './Tags/Tags';
+import Accordion from './Accordion/Accordion';
+import { ShortText } from './ShortWritingManager/interfaces';
 
 import ShortWritingManager from './ShortWritingManager/ShortWritingManager';
 /**
@@ -12,19 +14,16 @@ import ShortWritingManager from './ShortWritingManager/ShortWritingManager';
 // import testJson from './data/hatszavasok.json';
 import testJson from './data/0002.json';
 
-import Accordion from './Accordion/Accordion';
-import { ShortText } from './ShortWritingManager/interfaces';
-
 function App() {
   const [tags, setTags] = useState<string[]>([]);
   const [usedTags, setUsedTags] = useState<string[]>([]);
   const [unusedTags, setUnusedTags] = useState<string[]>([]);
   const swm = useRef(new ShortWritingManager())
-  const [lastChangeTime, setlastChangeTime] = useState(Date.now());
+  const [lastChangeTime, setLastChangeTime] = useState(Date.now());
 
   useEffect(() => {
     swm.current.readDataFromJSON(testJson);
-    setlastChangeTime(Date.now());
+    setLastChangeTime(Date.now());
   }, []);
 
   useEffect(() => {
@@ -58,9 +57,14 @@ function App() {
     )
   }
 
+  function bumpVersion() {
+    swm.current.bumpVersion();
+    setLastChangeTime(Date.now());
+  }
+
   function renderButtonToBumpVersion() {
     return (
-      <button onClick={swm.current.bumpVersion.bind(swm.current)}>Bump version</button>
+      <button onClick={bumpVersion}>Bump version</button>
     )
   }
 
@@ -85,7 +89,7 @@ function App() {
       newTextInput.value = '';
       newTextCategoryInput.value = '';
       newTextTagsInput.value = '';
-      setlastChangeTime(Date.now());
+      setLastChangeTime(Date.now());
     }
   }
 
@@ -112,7 +116,7 @@ function App() {
           category: '',
         }
         swm.current.addText(newShortText);
-        setlastChangeTime(Date.now());
+        setLastChangeTime(Date.now());
       }
     });
   }
@@ -137,7 +141,7 @@ function App() {
       } catch (error) {
         console.error(error);
       }
-      setlastChangeTime(Date.now());
+      setLastChangeTime(Date.now());
     }
   }
 
@@ -146,7 +150,7 @@ function App() {
       <div>
         <textarea rows={8} cols={50} id='import-from-string'></textarea>
         <br />
-        <button onClick={importDataFromTextarea}>Import data from textarea</button>
+        <button onClick={importDataFromTextarea}>Import JSON from textarea</button>
       </div>
     );
   }
