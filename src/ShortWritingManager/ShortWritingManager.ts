@@ -24,9 +24,26 @@ class ShortWritingManager {
     this.allShortTexts = jsonData.texts;
   }
 
+  public addCategory(categoryName: string) {
+    categoryName = categoryName.trim();
+    if (!this.categories.includes(categoryName)) {
+      this.categories.push(categoryName);
+    }
+  }
+
+  public addTag(tagName: string) {
+    console.log(`new tag: ${tagName}`)
+    tagName = tagName.trim();
+    if (!this.tags.includes(tagName)) {
+      this.tags.push(tagName);
+    }
+  }
+
   public addText(shortText: ShortText) {
     shortText.id = this.getNextTextId();
     this.allShortTexts.push(shortText);
+    shortText.tags.forEach(tag => this.addTag(tag));
+    this.addCategory(shortText.category);
   }
 
   public getShortTextListAsPlainText(): string {
