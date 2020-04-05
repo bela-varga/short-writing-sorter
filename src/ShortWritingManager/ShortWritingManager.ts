@@ -9,7 +9,7 @@ class ShortWritingManager {
 
   private getNextTextId() {
     const allCurrentid = this.allShortTexts.map(shortText => Number(shortText.id));
-    const currentMaxId = Math.max(...allCurrentid);
+    const currentMaxId = allCurrentid.length ? Math.max(...allCurrentid) : 0;
     return currentMaxId + 1;
   }
 
