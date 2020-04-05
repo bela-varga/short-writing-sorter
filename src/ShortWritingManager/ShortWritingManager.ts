@@ -1,4 +1,4 @@
-import { ShortText, ShortTextJSON } from './interfaces';
+import { ShortText, ShortTextJSON, GetShortTextListAsPlainTextInterface } from './interfaces';
 
 class ShortWritingManager {
   private jsonVersion: number; // TODO: upgrade version from number to version text (like 0.2.13)
@@ -48,12 +48,26 @@ class ShortWritingManager {
     this.addCategory(shortText.category);
   }
 
-  public getShortTextListAsPlainText(): string {
-    const delimiter = "\n- - -\n";
+  public getShortTextListAsPlainText({
+    delimiter,
+    showCategory,
+    showTags
+  }: GetShortTextListAsPlainTextInterface = {
+      delimiter: "\n- - -\n",
+      showCategory: false,
+      showTags: true
+  }): string {
     let allTextsInPlainText = `All texts (SUM: ${this.allShortTexts.length}):`;
     allTextsInPlainText += delimiter;
     this.allShortTexts.forEach((shortText, index) => {
-      allTextsInPlainText += shortText.text + delimiter;
+      let rowText = shortText.text;
+      if (showCategory) {
+        rowText += ` [${shortText.category}] `
+      }
+      if (showTags && shortText.tags.length) {
+        rowText += ` (${shortText.tags.join(',')}) `
+      }
+      allTextsInPlainText += rowText + delimiter;
     });
     return allTextsInPlainText;
   }
@@ -128,6 +142,10 @@ class ShortWritingManager {
     const allUsedTags = this.getAllUsedTags();
     return this.tags?.filter(tag => !allUsedTags.includes(tag));
   }
+
+
+
+  public getExistingMostSimilars(text: string) { }
 }
 
 export default ShortWritingManager;

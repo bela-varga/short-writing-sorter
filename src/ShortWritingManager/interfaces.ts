@@ -23,3 +23,9 @@ export interface ShortTextJSON {
   texts: ShortText[];
   ordering?: { "TBD-later": string[] }
 };
+
+export interface GetShortTextListAsPlainTextInterface {
+  delimiter: string;
+  showCategory: boolean;
+  showTags: boolean;
+}
