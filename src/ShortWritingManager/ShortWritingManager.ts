@@ -56,7 +56,7 @@ class ShortWritingManager {
       delimiter: "\n- - -\n",
       showCategory: false,
       showTags: true
-  }): string {
+    }): string {
     let allTextsInPlainText = `All texts (SUM: ${this.allShortTexts.length}):`;
     allTextsInPlainText += delimiter;
     this.allShortTexts.forEach((shortText, index) => {
@@ -143,9 +143,42 @@ class ShortWritingManager {
     return this.tags?.filter(tag => !allUsedTags.includes(tag));
   }
 
+  private getWordsArrayFromText(text: string): string[] {
+    // Adjust here to your own language. The following regex is for hungarian language.
+    const REGEX_FOR_CHARS_TO_REMOVE = /[.,?!:'"]/g;
+    let textToUse = text.replace(REGEX_FOR_CHARS_TO_REMOVE, ' ');
+    textToUse = textToUse.replace(/\s+/g, ' ').trim().toLocaleLowerCase();
+    return textToUse.split(' ');
+  }
 
+  private getSameWordCountBetweenTwoTexts(text1: string, text2: string): number {
+    let sameWordCount = 0;
+    const text1WordsArray = this.getWordsArrayFromText(text1);
+    const text2WordsArray = this.getWordsArrayFromText(text2);
+    text1WordsArray.forEach(word => {
+      if (text2WordsArray.includes(word)) {
+        sameWordCount++;
+      }
+    });
+    return sameWordCount;
+  }
 
-  public getExistingMostSimilars(text: string) { }
+  // TODO: refactor later, as this first approach uses getWordsArrayFromText() for wordsArrayOfTestedText in each iteration and it is unneccessary.
+  // TODO: add proper types later
+  // TODO: refactor to use better structure than an array
+  public getExistingMostSimilars(text: string) {
+    const similiarityArray: ShortText[][] = [];
+
+    this.allShortTexts.forEach(shortText => {
+      const sameWordCount = this.getSameWordCountBetweenTwoTexts(text, shortText.text);
+      if (!similiarityArray[sameWordCount]) {
+        similiarityArray[sameWordCount] = [];
+      }
+      similiarityArray[sameWordCount].push(shortText);
+    });
+
+    return similiarityArray;
+  }
 }
 
 export default ShortWritingManager;

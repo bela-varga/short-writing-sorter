@@ -217,7 +217,25 @@ function App() {
         <button onClick={toggleShowingDuplicateTexts}>Toggle showing duplicate texts</button>
         {showDulicateTexts && renderDuplicateTexts()}
       </div>
-    )
+    );
+  }
+
+  function showSimilarityResultInConsole() {
+    const forSimilarityCheckTextInput = document.getElementById('for-similiarity-check') as HTMLInputElement;
+    const textToTestSimiliarity = forSimilarityCheckTextInput.value.trim();
+    if (textToTestSimiliarity) {
+      const similarityArray = swm.current.getExistingMostSimilars(textToTestSimiliarity);
+      console.log(similarityArray);
+    }
+  }
+
+  function renderButtonToGetExistingMostSimilars() {
+    return (
+      <div>
+        <input type='text' id='for-similiarity-check'></input>
+        <button onClick={showSimilarityResultInConsole}>Show existing most similars in console</button>
+      </div>
+    );
   }
 
   return (
@@ -243,6 +261,7 @@ function App() {
       <Accordion title='Random things'>
         {renderButtonToBumpVersion()}
         {renderButtonToShowDuplicateTexts()}
+        {renderButtonToGetExistingMostSimilars()}
       </Accordion>
 
       <Accordion title='Import / Export'>
