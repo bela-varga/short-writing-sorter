@@ -1,6 +1,7 @@
 /* CSS Cusom Properties for the whole application */
 :root {
-  --main-theme-color-dark: #2f7a6f;
+  --main-theme-color-dark: #0f5a4f;
+  --main-theme-color: #2f7a6f;
   --main-theme-color-light: #4abdac;
   --secondary-theme-color-dark: #fc4a1a;
   --secondary-theme-color-light: #f7b733;
