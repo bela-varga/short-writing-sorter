@@ -105,16 +105,49 @@ function App() {
     )
   }
 
+  function replaceEachMultipleSacesToOne(paramString: string): string {
+    return paramString.replace(/\s+/g, ' ').trim();
+  }
+
+  function getShortTextPartsFromString(shortTextString: string): ShortText {
+    shortTextString = shortTextString.trim();
+    let category = '';
+    let tags: string[] = [];
+
+    const CATEGORY_REGEX = /\[.*?\]/;
+    const categoryRegexMatch = shortTextString.match(CATEGORY_REGEX);
+    if (categoryRegexMatch) {
+      category = categoryRegexMatch[0].slice(1, -1);
+      shortTextString = shortTextString.replace(CATEGORY_REGEX, ' ');
+    }
+
+    const TAGS_REGEX = /\(.*?\)/;
+    const tagsRegexMatch = shortTextString.match(TAGS_REGEX);
+    if (tagsRegexMatch) {
+      const tagsString = tagsRegexMatch[0].slice(1, -1);
+      tags = tagsString.split(',').map(value => value.trim());
+      shortTextString = shortTextString.replace(TAGS_REGEX, ' ');
+    }
+
+    shortTextString = replaceEachMultipleSacesToOne(shortTextString);
+    return {
+      category,
+      tags,
+      text: shortTextString
+    }
+  }
+
   function addMultipleNewTexts() {
     const multipleNewTextsInput = document.getElementById('multiple-new-texts') as HTMLTextAreaElement;
     const allNewTexts = multipleNewTextsInput.value.split('\n');
     allNewTexts.forEach(newTextString => {
       newTextString = newTextString.trim();
       if (newTextString) {
+        const { text, tags, category } = getShortTextPartsFromString(newTextString);
         const newShortText: ShortText = {
-          text: newTextString,
-          tags: [],
-          category: '',
+          text,
+          tags,
+          category,
         }
         swm.current.addText(newShortText);
         setLastChangeTime(Date.now());
@@ -167,7 +200,7 @@ function App() {
       textToShow = 'There is not any duplicate short text among the current ones.';
     }
 
-    return(
+    return (
       <pre>
         {textToShow}
       </pre>
