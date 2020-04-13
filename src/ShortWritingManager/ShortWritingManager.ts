@@ -179,6 +179,10 @@ class ShortWritingManager {
 
     return similiarityArray;
   }
+
+  public deleteAllShortTexts() {
+    this.allShortTexts = [];
+  }
 }
 
 export default ShortWritingManager;

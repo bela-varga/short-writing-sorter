@@ -66,6 +66,17 @@ function App() {
   function renderButtonToBumpVersion() {
     return (
       <button onClick={bumpVersion}>Bump version</button>
+      )
+    }
+
+    function deleteAllShortTexts() {
+      swm.current.deleteAllShortTexts();
+      setLastChangeTime(Date.now());
+  }
+
+  function renderButtonToDeleteAllShortTexts() {
+    return (
+      <button onClick={deleteAllShortTexts}>Delete all short texts</button>
     )
   }
 
@@ -260,6 +271,7 @@ function App() {
 
       <Accordion title='Random things'>
         {renderButtonToBumpVersion()}
+        {renderButtonToDeleteAllShortTexts()}
         {renderButtonToShowDuplicateTexts()}
         {renderButtonToGetExistingMostSimilars()}
       </Accordion>
