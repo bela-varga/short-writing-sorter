@@ -45,6 +45,7 @@ See App.tsx
 
 - some refactor?
 - add functionality to be able to edit existing ShortTexts
+- add ShortText component that can show a short text
 - add functionality to search all texts for a tag
 - add functionality to search all texts for a category
 - update searching by tags to search all texts for multiple tags
